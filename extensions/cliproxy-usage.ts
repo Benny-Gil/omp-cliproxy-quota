@@ -12,6 +12,17 @@ function status(remaining: number): "ok" | "warning" | "exhausted" {
   return remaining <= 0 ? "exhausted" : remaining < 0.3 ? "warning" : "ok"
 }
 
+const UNIT: Record<string, number> = { h: 3.6e6, d: 8.64e7, w: 6.048e8 }
+
+// "5h Session" and "7d Weekly" carry the window length in the label.
+function windowMs(g: any): number | undefined {
+  const m = /^(\d+)\s*([hdw])/i.exec(String(g.label ?? g.id))
+  return m ? Number(m[1]) * UNIT[m[2].toLowerCase()] : undefined
+}
+
+// "b***@edenholdingsinc.com" becomes "b***@edenholdingsinc".
+const shortAccount = (email: string) => String(email).replace(/\.[a-z.]+$/i, "")
+
 function makeProvider(id: string) {
   return {
     id,
@@ -28,19 +39,32 @@ function makeProvider(id: string) {
       const limits: any[] = []
       const mine = (data.accounts ?? []).filter((a: any) => a.provider === SERVES[id])
       for (const a of mine) {
-        for (const g of a.groups ?? []) {
-          if (g.remainingFraction == null) continue
+        const groups = (a.groups ?? []).filter((g: any) => g.remainingFraction != null)
+        const worst = Math.min(...groups.map((g: any) => g.remainingFraction as number), 1)
+        groups.sort((x: any, y: any) => (windowMs(x) ?? Infinity) - (windowMs(y) ?? Infinity))
+        groups.forEach((g: any, i: number) => {
           const remaining = g.remainingFraction as number
+          const notes: string[] = []
+          const noteRow = groups.findIndex((x: any) => x.remainingFraction <= 0)
+          if (a.status && a.status !== "active" && i === Math.max(noteRow, 0)) {
+            notes.push(worst <= 0 ? "window used up: the proxy skips this account until it resets" : `the proxy reports this account as ${a.status}`)
+          }
+          const duration = windowMs(g)
           limits.push({
             id: `${a.provider}:${a.authIndex ?? a.account}:${g.id}`,
-            label: mine.length > 1 ? `${a.account} · ${g.label}` : g.label,
+            label: mine.length > 1 ? `${g.label} · ${shortAccount(a.account)}` : g.label,
             scope: { provider: id, accountId: a.account, windowId: g.id },
-            window: { id: g.id, label: g.label, ...(g.resetTime ? { resetsAt: Date.parse(g.resetTime) } : {}) },
+            window: {
+              id: g.id,
+              label: g.label,
+              ...(duration ? { durationMs: duration } : {}),
+              ...(g.resetTime ? { resetsAt: Date.parse(g.resetTime) } : {}),
+            },
             amount: { unit: "percent", usedFraction: 1 - remaining, remainingFraction: remaining },
             status: status(remaining),
-            ...(a.status && a.status !== "active" ? { notes: [`proxy account status: ${a.status}`] } : {}),
+            ...(notes.length ? { notes } : {}),
           })
-        }
+        })
       }
       return { provider: id, fetchedAt: Date.now(), limits }
     },
