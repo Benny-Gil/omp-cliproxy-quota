@@ -49,19 +49,25 @@ function makeProvider(id: string) {
       const tag = tags(mine.map((a: any) => a.account))
       for (const a of mine) {
         const groups = (a.groups ?? []).filter((g: any) => g.remainingFraction != null)
-        const worst = Math.min(...groups.map((g: any) => g.remainingFraction as number), 1)
         groups.sort((x: any, y: any) => (windowMs(x) ?? Infinity) - (windowMs(y) ?? Infinity))
-        groups.forEach((g: any, i: number) => {
+        // With several accounts, one row per account keeps the narrow view clear.
+        // The row shows the window that binds: the least left, then the longest.
+        const byWindow = mine.length > 1 && groups.length > 0 && groups.every((g: any) => windowMs(g))
+        const rows = byWindow
+          ? [groups.reduce((m: any, g: any) =>
+              g.remainingFraction < m.remainingFraction || (g.remainingFraction === m.remainingFraction && windowMs(g)! > windowMs(m)!) ? g : m)]
+          : groups
+        for (const g of rows) {
           const remaining = g.remainingFraction as number
-          const notes: string[] = []
-          const noteRow = groups.findIndex((x: any) => x.remainingFraction <= 0)
-          if (a.status && a.status !== "active" && i === Math.max(noteRow, 0)) {
-            notes.push(worst <= 0 ? "window used up: the proxy skips this account until it resets" : `the proxy reports this account as ${a.status}`)
-          }
           const duration = windowMs(g)
-          const label = mine.length > 1 ? `${shortWindow(g.label)} · ${tag.get(a.account)}` : g.label
+          const label = byWindow ? tag.get(a.account)! : g.label
+          const notes: string[] = []
+          if (byWindow) {
+            notes.push(groups.map((x: any) => `${shortWindow(x.label)} ${Math.round(x.remainingFraction * 100)}% left`).join(" · "))
+          }
+          if (a.status && a.status !== "active" && remaining > 0) notes.push(`the proxy reports this account as ${a.status}`)
           limits.push({
-            id: `${a.provider}:${a.authIndex ?? a.account}:${g.id}`,
+            id: `${a.provider}:${a.authIndex ?? a.account}:${byWindow ? "binding" : g.id}`,
             label,
             scope: { provider: id, accountId: a.account, windowId: g.id },
             window: {
@@ -74,7 +80,7 @@ function makeProvider(id: string) {
             status: status(remaining),
             ...(notes.length ? { notes } : {}),
           })
-        })
+        }
       }
       return { provider: id, fetchedAt: Date.now(), limits }
     },
