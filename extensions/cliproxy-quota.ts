@@ -152,6 +152,21 @@ function plain(data: any): string {
     .join("\n");
 }
 
+// Terminals send Escape in several forms, for example the kitty protocol "\x1b[27u".
+// The omp key matcher knows them all. The raw list is the fallback when the import fails.
+let matches: ((data: string, id: string) => boolean) | undefined;
+import("@oh-my-pi/pi-tui").then((m: any) => (matches = m.matchesKey)).catch(() => {});
+const RAW_CLOSE = ["\x1b", "\x1b\x1b", "\x1b[27u", "\x1b[27;1u", "\x1b[27;1:1u", "q", "Q", "\r", "\n", "\x03"];
+const isClose = (key: string) =>
+  RAW_CLOSE.includes(key) ||
+  ["escape", "enter", "ctrl+c", "q"].some((id) => {
+    try {
+      return matches?.(key, id) ?? false;
+    } catch {
+      return false;
+    }
+  });
+
 export default function (pi: any): void {
   if (typeof pi.registerCommand !== "function") return;
   pi.registerCommand("quota", {
@@ -178,8 +193,7 @@ export default function (pi: any): void {
           render: (width: number) => frame(data, error, width, updated),
           invalidate() {},
           handleInput(key: string) {
-            if (key === "\x1b" || key === "q" || key === "\r" || key === "\x03")
-              return done(undefined);
+            if (isClose(key)) return done(undefined);
             if (key === "r") {
               error = null;
               load(true)
