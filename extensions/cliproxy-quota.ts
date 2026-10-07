@@ -20,7 +20,7 @@ const C = {
   bad: "#e5534b",
   dim: "#6e7681",
   text: "#c9d1d9",
-  track: "#30363d",
+  track: "#4a525c",
   frame: "#444c56",
   title: "#f0f6fc",
 };
@@ -62,10 +62,12 @@ async function load(refresh: boolean): Promise<any> {
 function body(data: any, inner: number): string[] {
   const out: string[] = [];
   const order = Object.keys(BRAND);
-  const accounts = [...(data.accounts ?? [])].sort((x: any, y: any) => order.indexOf(x.provider) - order.indexOf(y.provider));
+  const accounts = [...(data.accounts ?? [])].sort(
+    (x: any, y: any) => order.indexOf(x.provider) - order.indexOf(y.provider),
+  );
   const LABEL = 15;
   const RESET = 11;
-  const bar = Math.max(8, Math.min(40, inner - LABEL - RESET - 12));
+  const bar = Math.max(8, Math.min(30, inner - LABEL - RESET - 12));
   accounts.forEach((a: any, n: number) => {
     const [color, name] = BRAND[a.provider] ?? [C.text, String(a.provider)];
     const groups = (a.groups ?? []).filter(
@@ -88,7 +90,7 @@ function body(data: any, inner: number): string[] {
       const f = g.remainingFraction as number;
       const filled = Math.round(f * bar);
       const meter =
-        fg(tone(f), "█".repeat(filled)) + fg(C.track, "█".repeat(bar - filled));
+        fg(tone(f), "━".repeat(filled)) + fg(C.track, "─".repeat(bar - filled));
       const pct = fg(tone(f), bold(right(`${Math.round(f * 100)}%`, 4)));
       out.push(
         `  ${pad(fg(C.text, String(g.label)), LABEL)}${meter} ${pct}  ${fg(C.dim, right(reset(g.resetTime), RESET))}`,
