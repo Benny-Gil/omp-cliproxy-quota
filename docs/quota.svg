@@ -1,64 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="780" height="550" viewBox="0 0 780 550" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" role="img" aria-label="Rendered preview of the /quota output in omp">
-<rect width="780" height="550" rx="12" fill="#22272e"/>
-<rect width="780" height="38" rx="12" fill="#1c2128"/><rect y="26" width="780" height="12" fill="#1c2128"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="496" viewBox="0 0 760 496" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" role="img" aria-label="Rendered preview of the /quota panel in omp">
+<rect width="760" height="496" rx="12" fill="#1c2128"/>
+<rect width="760" height="38" rx="12" fill="#22272e"/><rect y="26" width="760" height="12" fill="#22272e"/>
 <circle cx="22" cy="19" r="6" fill="#ff5f57"/><circle cx="42" cy="19" r="6" fill="#febc2e"/><circle cx="62" cy="19" r="6" fill="#28c840"/>
-<text x="390.0" y="24" fill="#636e7b" text-anchor="middle" font-size="13">omp · cliproxy</text>
-<rect x="20" y="62" width="740" height="30" rx="6" fill="#1c2128"/>
-<text x="28" y="82" fill="#57ab5a" font-weight="700" text-anchor="start">❯</text>
-<text x="50" y="82" fill="#cdd9e5" font-weight="400" text-anchor="start">/quota</text>
-<text x="28" y="132" fill="#cdd9e5" font-weight="700" text-anchor="start">CLIProxy quota</text>
-<text x="28" y="164" fill="#cdd9e5" font-weight="700" text-anchor="start">claude</text>
-<text x="90.4" y="164" fill="#636e7b" font-weight="400" text-anchor="start">a***@example.com</text>
-<circle cx="244.8" cy="159" r="4" fill="#e5534b"/>
-<text x="254.8" y="164" fill="#e5534b" font-weight="400" text-anchor="start">error</text>
-<text x="44" y="188" fill="#adbac7" font-weight="400" text-anchor="start">5h Session</text>
-<rect x="167.2" y="179" width="240" height="7" rx="3.5" fill="#373e47"/>
-<text x="459.2" y="188" fill="#e5534b" font-weight="700" text-anchor="end">0%</text>
-<text x="477.2" y="188" fill="#636e7b" font-weight="400" text-anchor="start">in 2h 03m</text>
-<text x="44" y="212" fill="#adbac7" font-weight="400" text-anchor="start">7d Weekly</text>
-<rect x="167.2" y="203" width="240" height="7" rx="3.5" fill="#373e47"/>
-<text x="459.2" y="212" fill="#e5534b" font-weight="700" text-anchor="end">0%</text>
-<text x="477.2" y="212" fill="#636e7b" font-weight="400" text-anchor="start">in 1d 10h</text>
-<text x="28" y="246" fill="#cdd9e5" font-weight="700" text-anchor="start">codex</text>
-<text x="82.0" y="246" fill="#636e7b" font-weight="400" text-anchor="start">b***@example.com</text>
-<text x="44" y="270" fill="#adbac7" font-weight="400" text-anchor="start">5h Window</text>
-<rect x="167.2" y="261" width="240" height="7" rx="3.5" fill="#373e47"/>
-<rect x="167.2" y="261" width="240.0" height="7" rx="3.5" fill="#57ab5a"/>
-<text x="459.2" y="270" fill="#57ab5a" font-weight="700" text-anchor="end">100%</text>
-<text x="477.2" y="270" fill="#636e7b" font-weight="400" text-anchor="start">in 4h 31m</text>
-<text x="44" y="294" fill="#adbac7" font-weight="400" text-anchor="start">7d Window</text>
-<rect x="167.2" y="285" width="240" height="7" rx="3.5" fill="#373e47"/>
-<rect x="167.2" y="285" width="240.0" height="7" rx="3.5" fill="#57ab5a"/>
-<text x="459.2" y="294" fill="#57ab5a" font-weight="700" text-anchor="end">100%</text>
-<text x="477.2" y="294" fill="#636e7b" font-weight="400" text-anchor="start">in 6d 23h</text>
-<text x="28" y="328" fill="#cdd9e5" font-weight="700" text-anchor="start">antigravity</text>
-<text x="132.4" y="328" fill="#636e7b" font-weight="400" text-anchor="start">c***@example.com</text>
-<text x="44" y="352" fill="#adbac7" font-weight="400" text-anchor="start">Pro Models</text>
-<rect x="167.2" y="343" width="240" height="7" rx="3.5" fill="#373e47"/>
-<rect x="167.2" y="343" width="199.2" height="7" rx="3.5" fill="#57ab5a"/>
-<text x="459.2" y="352" fill="#57ab5a" font-weight="700" text-anchor="end">83%</text>
-<text x="477.2" y="352" fill="#636e7b" font-weight="400" text-anchor="start">in 2h 19m</text>
-<text x="44" y="376" fill="#adbac7" font-weight="400" text-anchor="start">Flash Models</text>
-<rect x="167.2" y="367" width="240" height="7" rx="3.5" fill="#373e47"/>
-<rect x="167.2" y="367" width="199.2" height="7" rx="3.5" fill="#57ab5a"/>
-<text x="459.2" y="376" fill="#57ab5a" font-weight="700" text-anchor="end">83%</text>
-<text x="477.2" y="376" fill="#636e7b" font-weight="400" text-anchor="start">in 2h 19m</text>
-<text x="44" y="400" fill="#adbac7" font-weight="400" text-anchor="start">Other Models</text>
-<rect x="167.2" y="391" width="240" height="7" rx="3.5" fill="#373e47"/>
-<rect x="167.2" y="391" width="240.0" height="7" rx="3.5" fill="#57ab5a"/>
-<text x="459.2" y="400" fill="#57ab5a" font-weight="700" text-anchor="end">100%</text>
-<text x="477.2" y="400" fill="#636e7b" font-weight="400" text-anchor="start">in 4h 58m</text>
-<text x="28" y="434" fill="#cdd9e5" font-weight="700" text-anchor="start">claude</text>
-<text x="90.4" y="434" fill="#636e7b" font-weight="400" text-anchor="start">d***@example.com</text>
-<text x="44" y="458" fill="#adbac7" font-weight="400" text-anchor="start">5h Session</text>
-<rect x="167.2" y="449" width="240" height="7" rx="3.5" fill="#373e47"/>
-<rect x="167.2" y="449" width="100.8" height="7" rx="3.5" fill="#c69026"/>
-<text x="459.2" y="458" fill="#c69026" font-weight="700" text-anchor="end">42%</text>
-<text x="477.2" y="458" fill="#636e7b" font-weight="400" text-anchor="start">in 1h 12m</text>
-<text x="44" y="482" fill="#adbac7" font-weight="400" text-anchor="start">7d Weekly</text>
-<rect x="167.2" y="473" width="240" height="7" rx="3.5" fill="#373e47"/>
-<rect x="167.2" y="473" width="43.2" height="7" rx="3.5" fill="#e5534b"/>
-<text x="459.2" y="482" fill="#e5534b" font-weight="700" text-anchor="end">18%</text>
-<text x="477.2" y="482" fill="#636e7b" font-weight="400" text-anchor="start">in 3d 02h</text>
-<text x="28" y="518" fill="#636e7b" font-weight="400" text-anchor="start">/quota -r refreshes (cached 2 min)</text>
+<text x="380.0" y="24" fill="#6e7681" text-anchor="middle" font-size="13">omp · /quota</text>
+<rect x="18" y="52" width="724" height="426" rx="8" fill="none" stroke="#444c56" stroke-width="1.2"/>
+<text x="38" y="57" fill="#f0f6fc" font-weight="700" font-size="14" style="paint-order:stroke" stroke="#1c2128" stroke-width="8">CLIProxy quota</text>
+<circle cx="39" cy="89" r="4.5" fill="#e5534b"/>
+<text x="52" y="94" fill="#d97757" font-weight="700" text-anchor="start" font-size="14">Claude</text>
+<text x="116.4" y="94" fill="#6e7681" font-weight="400" text-anchor="start" font-size="14">a***@example.com</text>
+<rect x="650" y="79" width="76" height="21" rx="4" fill="#e5534b"/>
+<text x="688.0" y="94" fill="#ffffff" font-weight="700" text-anchor="middle" font-size="12">USED UP</text>
+<text x="48" y="118" fill="#c9d1d9" font-weight="400" text-anchor="start" font-size="14">5h Session</text>
+<rect x="174.0" y="112" width="250" height="2" rx="1" fill="#4a525c"/>
+<text x="472.0" y="118" fill="#e5534b" font-weight="700" text-anchor="end" font-size="14">0%</text>
+<text x="726" y="118" fill="#6e7681" font-weight="400" text-anchor="end" font-size="14">in 1h 28m</text>
+<text x="48" y="142" fill="#c9d1d9" font-weight="400" text-anchor="start" font-size="14">7d Weekly</text>
+<rect x="174.0" y="136" width="250" height="2" rx="1" fill="#4a525c"/>
+<text x="472.0" y="142" fill="#e5534b" font-weight="700" text-anchor="end" font-size="14">0%</text>
+<text x="726" y="142" fill="#6e7681" font-weight="400" text-anchor="end" font-size="14">in 1d 9h</text>
+<circle cx="39" cy="175" r="4.5" fill="#e5534b"/>
+<text x="52" y="180" fill="#d97757" font-weight="700" text-anchor="start" font-size="14">Claude</text>
+<text x="116.4" y="180" fill="#6e7681" font-weight="400" text-anchor="start" font-size="14">b***@example.com</text>
+<rect x="650" y="165" width="76" height="21" rx="4" fill="#e5534b"/>
+<text x="688.0" y="180" fill="#ffffff" font-weight="700" text-anchor="middle" font-size="12">USED UP</text>
+<text x="48" y="204" fill="#c9d1d9" font-weight="400" text-anchor="start" font-size="14">5h Session</text>
+<rect x="174.0" y="198" width="250" height="2" rx="1" fill="#4a525c"/>
+<rect x="174.0" y="196.5" width="250.0" height="5" rx="2.5" fill="#57ab5a"/>
+<text x="472.0" y="204" fill="#57ab5a" font-weight="700" text-anchor="end" font-size="14">100%</text>
+<text x="726" y="204" fill="#6e7681" font-weight="400" text-anchor="end" font-size="14">idle</text>
+<text x="48" y="228" fill="#c9d1d9" font-weight="400" text-anchor="start" font-size="14">7d Weekly</text>
+<rect x="174.0" y="222" width="250" height="2" rx="1" fill="#4a525c"/>
+<text x="472.0" y="228" fill="#e5534b" font-weight="700" text-anchor="end" font-size="14">0%</text>
+<text x="726" y="228" fill="#6e7681" font-weight="400" text-anchor="end" font-size="14">in 17h 28m</text>
+<circle cx="39" cy="261" r="4.5" fill="#57ab5a"/>
+<text x="52" y="266" fill="#3fb68b" font-weight="700" text-anchor="start" font-size="14">Codex</text>
+<text x="108.0" y="266" fill="#6e7681" font-weight="400" text-anchor="start" font-size="14">c***@example.com</text>
+<rect x="666" y="251" width="60" height="21" rx="4" fill="#57ab5a"/>
+<text x="696.0" y="266" fill="#0b1f10" font-weight="700" text-anchor="middle" font-size="12">READY</text>
+<text x="48" y="290" fill="#c9d1d9" font-weight="400" text-anchor="start" font-size="14">5h Window</text>
+<rect x="174.0" y="284" width="250" height="2" rx="1" fill="#4a525c"/>
+<rect x="174.0" y="282.5" width="247.5" height="5" rx="2.5" fill="#57ab5a"/>
+<text x="472.0" y="290" fill="#57ab5a" font-weight="700" text-anchor="end" font-size="14">99%</text>
+<text x="726" y="290" fill="#6e7681" font-weight="400" text-anchor="end" font-size="14">in 3h 57m</text>
+<text x="48" y="314" fill="#c9d1d9" font-weight="400" text-anchor="start" font-size="14">7d Window</text>
+<rect x="174.0" y="308" width="250" height="2" rx="1" fill="#4a525c"/>
+<rect x="174.0" y="306.5" width="250.0" height="5" rx="2.5" fill="#57ab5a"/>
+<text x="472.0" y="314" fill="#57ab5a" font-weight="700" text-anchor="end" font-size="14">100%</text>
+<text x="726" y="314" fill="#6e7681" font-weight="400" text-anchor="end" font-size="14">in 6d 22h</text>
+<circle cx="39" cy="347" r="4.5" fill="#57ab5a"/>
+<text x="52" y="352" fill="#5b8def" font-weight="700" text-anchor="start" font-size="14">Gemini</text>
+<text x="116.4" y="352" fill="#6e7681" font-weight="400" text-anchor="start" font-size="14">d***@example.com</text>
+<rect x="666" y="337" width="60" height="21" rx="4" fill="#57ab5a"/>
+<text x="696.0" y="352" fill="#0b1f10" font-weight="700" text-anchor="middle" font-size="12">READY</text>
+<text x="48" y="376" fill="#c9d1d9" font-weight="400" text-anchor="start" font-size="14">Pro Models</text>
+<rect x="174.0" y="370" width="250" height="2" rx="1" fill="#4a525c"/>
+<rect x="174.0" y="368.5" width="207.5" height="5" rx="2.5" fill="#57ab5a"/>
+<text x="472.0" y="376" fill="#57ab5a" font-weight="700" text-anchor="end" font-size="14">83%</text>
+<text x="726" y="376" fill="#6e7681" font-weight="400" text-anchor="end" font-size="14">in 1h 45m</text>
+<text x="48" y="400" fill="#c9d1d9" font-weight="400" text-anchor="start" font-size="14">Flash Models</text>
+<rect x="174.0" y="394" width="250" height="2" rx="1" fill="#4a525c"/>
+<rect x="174.0" y="392.5" width="207.5" height="5" rx="2.5" fill="#57ab5a"/>
+<text x="472.0" y="400" fill="#57ab5a" font-weight="700" text-anchor="end" font-size="14">83%</text>
+<text x="726" y="400" fill="#6e7681" font-weight="400" text-anchor="end" font-size="14">in 1h 45m</text>
+<text x="48" y="424" fill="#c9d1d9" font-weight="400" text-anchor="start" font-size="14">Other Models</text>
+<rect x="174.0" y="418" width="250" height="2" rx="1" fill="#4a525c"/>
+<rect x="174.0" y="416.5" width="250.0" height="5" rx="2.5" fill="#57ab5a"/>
+<text x="472.0" y="424" fill="#57ab5a" font-weight="700" text-anchor="end" font-size="14">100%</text>
+<text x="726" y="424" fill="#6e7681" font-weight="400" text-anchor="end" font-size="14">in 4h 59m</text>
+<text x="34" y="464" fill="#6e7681" font-weight="400" text-anchor="start" font-size="13">r refresh   esc close</text>
 </svg>

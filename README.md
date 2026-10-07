@@ -6,13 +6,13 @@ The package has two parts. Use one or both.
 | Part | Command | Result |
 |---|---|---|
 | Usage provider | `omp usage`, `/usage` | The proxy accounts appear in the built-in omp usage display, with history. |
-| Quick view | `/quota` | One coloured bar for each quota window. |
+| Dashboard | `/quota` | A framed panel with a bar for each quota window and a status chip for each account. |
 
 <p align="center">
   <img src="docs/quota.svg" alt="Rendered preview of the /quota output in omp" width="720">
 </p>
 
-<p align="center"><sub>A rendered preview with made-up accounts. The terminal draws the bars with line characters.</sub></p>
+<p align="center"><sub>A rendered preview of the `/quota` panel with made-up accounts.</sub></p>
 
 Green means 70% or more is left. Yellow means 30% to 69%. Red means less than 30%.
 
@@ -67,9 +67,11 @@ Add `--with-cli` to also install `cliquota`, a terminal command with the same ou
 |---|---|
 | `omp usage` | Shows the proxy accounts with the other providers. Add `-p cliproxy-claude` to filter. |
 | `omp usage --history` | Shows the hourly snapshots that omp recorded. |
-| `/usage` | The same display inside a session. This beta did not test it in a live session. |
-| `/quota` | Shows the quota. The bridge returns data that is up to two minutes old. |
+| `/usage` | The same display inside a session. |
+| `/quota` | Opens the dashboard panel. The bridge returns data that is up to two minutes old. |
 | `/quota -r` | Asks the bridge for a fresh read. |
+| `r` in the panel | Refreshes without closing the panel. |
+| `esc` or `q` in the panel | Closes the panel. |
 | `cliquota` | Same output in a plain terminal. |
 | `cliquota -r` | Same fresh read in a plain terminal. |
 
@@ -118,7 +120,7 @@ A working bridge returns JSON with `"plugin":"pi-bridge"`.
 | `quota: no cliproxy baseUrl or apiKey in models.yml` | The extension cannot find the proxy. | Add a provider with `baseUrl` and `apiKey`. |
 | `No credentials found for provider` | Omp has no credential for the provider. | Run `./setup-credentials.py`. |
 | `/quota` does not exist | Omp did not load the extension. | Start a new omp session. Check the file in `~/.omp/agent/extensions/`. |
-| Raw `[32m` codes appear | Your terminal does not show colours in `notify`. | Open an issue. A plain mode is a small change. |
+| The panel shows no colours | Your terminal does not support true colour. | Use a terminal that does, or open an issue. |
 | A Claude account shows `● error` | The account has no quota left, or the proxy cannot use it. | Wait for the reset time, or check the account on the proxy. |
 
 ## Security
