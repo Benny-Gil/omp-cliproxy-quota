@@ -3,21 +3,11 @@
 See the quota of every CLIProxyAPI account without leaving [omp](https://github.com/can1357/oh-my-pi).
 Type `/quota` in omp. The extension shows one coloured bar for each quota window.
 
-```
-CLIProxy quota
+<p align="center">
+  <img src="docs/quota.svg" alt="Rendered preview of the /quota output in omp" width="720">
+</p>
 
-claude  a***@example.com  ● error
-  5h Session    ────────────────────   0%  in 2h 03m
-  7d Weekly     ────────────────────   0%  in 1d 10h
-
-codex  b***@example.com
-  5h Window     ━━━━━━━━━━━━━━━━━━━━ 100%  in 4h 31m
-  7d Window     ━━━━━━━━━━━━━━━━━━━━ 100%  in 6d 23h
-
-antigravity  c***@example.com
-  Pro Models    ━━━━━━━━━━━━━━━━────  83%  in 2h 19m
-  Flash Models  ━━━━━━━━━━━━━━━━────  83%  in 2h 19m
-```
+<p align="center"><sub>A rendered preview with made-up accounts. The terminal draws the bars with line characters.</sub></p>
 
 Green means 70% or more is left. Yellow means 30% to 69%. Red means less than 30%.
 
@@ -108,6 +98,7 @@ A working bridge returns JSON with `"plugin":"pi-bridge"`.
 ## Layout
 
 ```
+docs/quota.svg                 the preview image
 extensions/cliproxy-quota.ts   the /quota command for omp
 cliquota                       the same report as a terminal command
 install.sh                     copies the files into place
