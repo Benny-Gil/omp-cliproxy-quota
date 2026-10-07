@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+"""Print CLIProxyAPI quota from the pi-bridge plugin. Reads the key from omp models.yml."""
+import json, re, sys, urllib.request
+from datetime import datetime, timezone
+
+MODELS = __import__("os").path.expanduser("~/.omp/agent/models.yml")
+text = open(MODELS).read()
+base = re.search(r"baseUrl:\s*(http://[\d.]+:\d+)", text).group(1)
+key = re.search(r"apiKey:\s*(\S+)", text).group(1)
+
+req = urllib.request.Request(
+    f"{base}/v0/resource/plugins/pi-bridge/usage" + ("?refresh=1" if "-r" in sys.argv else ""),
+    headers={"Authorization": f"Bearer {key}"},
+)
+try:
+    data = json.load(urllib.request.urlopen(req, timeout=20))
+except Exception as e:
+    sys.exit(f"cliquota: cannot read usage ({e}). Is pi-bridge enabled on the proxy?")
+
+def reset(ts):
+    if not ts:
+        return "-"
+    t = datetime.fromisoformat(ts.replace("Z", "+00:00")).astimezone()
+    mins = int((t - datetime.now(timezone.utc)).total_seconds() // 60)
+    left = f"{mins // 60}h{mins % 60:02d}m" if mins > 0 else "now"
+    return f"{t:%a %H:%M} (in {left})"
+
+def bar(frac):
+    n = round(frac * 10)
+    return "#" * n + "." * (10 - n)
+
+for a in data["accounts"]:
+    flag = "" if a.get("status") == "active" else f"  [{a.get('status')}]"
+    print(f"{a['provider']}  {a['account']}{flag}")
+    groups = a.get("groups") or []
+    if not groups:
+        print("    no quota windows")
+    for g in groups:
+        f = g.get("remainingFraction")
+        if f is None:
+            continue
+        print(f"    {g['label']:<14} {bar(f)} {f * 100:3.0f}% left   resets {reset(g.get('resetTime'))}")
+print("\n(-r forces a fresh read; the bridge caches for 2 minutes)")
