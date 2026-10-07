@@ -20,8 +20,16 @@ function windowMs(g: any): number | undefined {
   return m ? Number(m[1]) * UNIT[m[2].toLowerCase()] : undefined
 }
 
-// "b***@edenholdingsinc.com" becomes "b***@edenholdingsinc".
-const shortAccount = (email: string) => String(email).replace(/\.[a-z.]+$/i, "")
+// The usage view has narrow columns. "b***@edenholdingsinc.com" becomes "edenholdingsinc".
+// Two accounts on one domain keep the masked name so that the rows stay distinct.
+function tags(emails: string[]): Map<string, string> {
+  const domain = (e: string) => String(e).split("@")[1]?.replace(/\.[a-z.]+$/i, "") ?? e
+  const unique = new Set(emails.map(domain)).size === emails.length
+  return new Map(emails.map((e) => [e, unique ? domain(e) : String(e).replace(/\.[a-z.]+$/i, "")]))
+}
+
+// "5h Session" becomes "5h"; "Pro Models" stays as it is.
+const shortWindow = (label: string) => /^\d+\s*[hdw]\b/i.exec(label)?.[0].replace(/\s+/g, "") ?? label
 
 function makeProvider(id: string) {
   return {
@@ -38,6 +46,7 @@ function makeProvider(id: string) {
       const data: any = await res.json()
       const limits: any[] = []
       const mine = (data.accounts ?? []).filter((a: any) => a.provider === SERVES[id])
+      const tag = tags(mine.map((a: any) => a.account))
       for (const a of mine) {
         const groups = (a.groups ?? []).filter((g: any) => g.remainingFraction != null)
         const worst = Math.min(...groups.map((g: any) => g.remainingFraction as number), 1)
@@ -50,13 +59,14 @@ function makeProvider(id: string) {
             notes.push(worst <= 0 ? "window used up: the proxy skips this account until it resets" : `the proxy reports this account as ${a.status}`)
           }
           const duration = windowMs(g)
+          const label = mine.length > 1 ? `${shortWindow(g.label)} · ${tag.get(a.account)}` : g.label
           limits.push({
             id: `${a.provider}:${a.authIndex ?? a.account}:${g.id}`,
-            label: mine.length > 1 ? `${g.label} · ${shortAccount(a.account)}` : g.label,
+            label,
             scope: { provider: id, accountId: a.account, windowId: g.id },
             window: {
               id: g.id,
-              label: g.label,
+              label,
               ...(duration ? { durationMs: duration } : {}),
               ...(g.resetTime ? { resetsAt: Date.parse(g.resetTime) } : {}),
             },
