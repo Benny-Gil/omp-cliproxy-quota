@@ -61,7 +61,8 @@ async function load(refresh: boolean): Promise<any> {
 // One block of rows for each proxy account.
 function body(data: any, inner: number): string[] {
   const out: string[] = [];
-  const accounts = data.accounts ?? [];
+  const order = Object.keys(BRAND);
+  const accounts = [...(data.accounts ?? [])].sort((x: any, y: any) => order.indexOf(x.provider) - order.indexOf(y.provider));
   const LABEL = 15;
   const RESET = 11;
   const bar = Math.max(8, Math.min(40, inner - LABEL - RESET - 12));
